@@ -81,6 +81,18 @@ All colors MUST be HSL.
   --sidebar-accent-foreground: 240 4.8% 95.9%;
   --sidebar-border: 240 3.7% 15.9%;
   --sidebar-ring: 217.2 91.2% 59.8%;
+
+  /* Chess Theme Colors */
+  --chess-board-light: 30 25% 85%;
+  --chess-board-dark: 25 30% 65%;
+  --chess-background: 20 15% 10%;
+  --chess-surface: 25 20% 15%;
+  --chess-accent: 30 40% 55%;
+  --chess-text-light: 30 20% 95%;
+  --chess-text-muted: 25 10% 70%;
+  --chess-border: 25 15% 25%;
+  --chess-highlight: 45 100% 60%;
+  --chess-danger: 0 65% 55%;
 }
 
 @theme {
@@ -124,7 +136,19 @@ All colors MUST be HSL.
   --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
   --color-sidebar-border: hsl(var(--sidebar-border));
   --color-sidebar-ring: hsl(var(--sidebar-ring));
-  
+
+  /* Chess Theme Colors */
+  --color-chess-board-light: hsl(var(--chess-board-light));
+  --color-chess-board-dark: hsl(var(--chess-board-dark));
+  --color-chess-background: hsl(var(--chess-background));
+  --color-chess-surface: hsl(var(--chess-surface));
+  --color-chess-accent: hsl(var(--chess-accent));
+  --color-chess-text-light: hsl(var(--chess-text-light));
+  --color-chess-text-muted: hsl(var(--chess-text-muted));
+  --color-chess-border: hsl(var(--chess-border));
+  --color-chess-highlight: hsl(var(--chess-highlight));
+  --color-chess-danger: hsl(var(--chess-danger));
+
   /* Border Radius */
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -133,6 +157,15 @@ All colors MUST be HSL.
   /* Animations */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-piece-move: piece-move 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-piece-capture: piece-capture 0.2s ease-out;
+
+  /* Responsive Breakpoints */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
 }
 
 @keyframes accordion-down {
@@ -150,6 +183,76 @@ All colors MUST be HSL.
   }
   to {
     height: 0;
+  }
+}
+
+@keyframes piece-move {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes piece-capture {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  100% {
+    transform: scale(0) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .chess-board {
+    max-width: 90vw;
+    aspect-ratio: 1;
+  }
+
+  .chess-piece {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .move-history {
+    height: 200px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .chess-square {
+    min-height: 44px; /* Minimum touch target size */
+    min-width: 44px;
+  }
+
+  .chess-piece {
+    cursor: default;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --chess-board-light: 0 0% 95%;
+    --chess-board-dark: 0 0% 15%;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
