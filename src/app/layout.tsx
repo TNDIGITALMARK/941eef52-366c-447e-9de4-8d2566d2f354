@@ -7,6 +7,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+import Script from "next/script";
+import { PhoenixTracker } from "@/components/PhoenixTracker";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,6 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="stylesheet" href="/phoenix-tracking.css" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -45,7 +50,9 @@ export default function RootLayout({
               <Sonner />
             </TooltipProvider>
           </ThemeProvider>
-        </QueryProvider>
+        </QueryProvider>        <Script src="/phoenix-tracking.js" strategy="afterInteractive" />
+        <PhoenixTracker />
+
       </body>
     </html>
   );

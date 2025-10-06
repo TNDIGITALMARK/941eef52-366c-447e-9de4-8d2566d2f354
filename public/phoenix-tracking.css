@@ -1,0 +1,525 @@
+/**
+ * Phoenix Tracking Asset: phoenix-tracking.css
+ * Build-Time Generated: 2025-10-06T01:47:13.337Z
+ * Content Hash: 106315b9
+ * 
+ * This asset is managed by Phoenix BuildTimeTrackingManager.
+ * DO NOT EDIT MANUALLY - changes will be overwritten.
+ */
+
+/**
+ * Phoenix Tracking Styles - Build-Time Edition
+ * Generated for production builds - survives Next.js compilation
+ * 
+ * Generated at: 2025-10-06T01:47:13.331Z
+ * Animations: enabled
+ * HUD: enabled
+ */
+
+/* ===== PHOENIX TRACKING BASE STYLES ===== */
+
+/* Selection mode cursor for entire page */
+body[data-phoenix-selection-active="true"] {
+  cursor: crosshair !important;
+  user-select: none !important;
+}
+
+body[data-phoenix-selection-active="true"] [data-phoenix-id] {
+  cursor: crosshair !important;
+}
+
+/* ===== ELEMENT HIGHLIGHTING STYLES ===== */
+
+/* Phoenix element base styles */
+[data-phoenix-id] {
+  position: relative;
+  transition: all 0.2s ease !important;
+}
+
+/* NEVER interfere with images inside tracked elements */
+[data-phoenix-id] img,
+[data-phoenix-id] picture,
+[data-phoenix-id] video,
+[data-phoenix-id] canvas,
+[data-phoenix-id] svg {
+  position: static !important;
+  z-index: auto !important;
+  outline: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: initial !important;
+}
+
+/* Hover highlighting - ONLY when actively selecting (like old system) */
+body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) [data-phoenix-id]:hover {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+  z-index: 9999 !important;
+  
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.3) !important;
+  
+}
+
+/* NEVER override background images on hover - use outline only */
+body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) [data-phoenix-id]:hover {
+  background-image: inherit !important;
+  background-size: inherit !important;
+  background-position: inherit !important;
+  background-repeat: inherit !important;
+  background-attachment: inherit !important;
+}
+
+/* Disable all tracking visual effects when disabled */
+body[data-phoenix-disabled] [data-phoenix-id] {
+  cursor: inherit !important;
+}
+
+body[data-phoenix-disabled] [data-phoenix-id]:hover {
+  outline: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Selection highlighting */
+.phoenix-selected {
+  outline: 3px solid #10b981 !important;
+  outline-offset: -1px !important;
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  z-index: 10000 !important;
+  
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.4) !important;
+  animation: phoenix-pulse 2s infinite;
+  
+}
+
+/* Explicit highlighting class */
+.phoenix-highlight {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  z-index: 9999 !important;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes phoenix-pulse {
+  0% {
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
+    outline-color: #10b981;
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(16, 185, 129, 0.6);
+    outline-color: #06d6a0;
+  }
+  100% {
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
+    outline-color: #10b981;
+  }
+}
+
+@keyframes phoenix-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Selection ready indicator - only when not disabled */
+body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) [data-phoenix-id]:hover::after {
+  content: "✓";
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #10b981;
+  color: white;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 10001;
+  pointer-events: none;
+  animation: phoenix-bounce 0.3s ease-out;
+}
+
+@keyframes phoenix-bounce {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+/* ===== HUD STYLES ===== */
+
+.phoenix-hud {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  z-index: 999999;
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  max-width: 320px;
+  word-wrap: break-word;
+  
+  transform: translateY(-10px);
+  opacity: 0;
+  animation: phoenix-fade-in 0.3s ease-out forwards;
+  
+}
+
+.phoenix-hud strong {
+  color: #10b981;
+}
+
+.phoenix-hud .phoenix-hud-title {
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: #10b981;
+}
+
+.phoenix-hud .phoenix-hud-field {
+  margin: 4px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.phoenix-hud .phoenix-hud-field-label {
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.phoenix-hud .phoenix-hud-field-value {
+  opacity: 0.9;
+  text-align: right;
+  flex: 1;
+  margin-left: 12px;
+  word-break: break-all;
+}
+
+.phoenix-hud .phoenix-hud-footer {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 10px;
+  opacity: 0.8;
+  text-align: center;
+}
+
+
+@keyframes phoenix-fade-in {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+/* ===== SELECTION OVERLAY STYLES ===== */
+
+/* Subtle selection mode indicator - MINIMAL overlay to avoid covering content */
+body[data-phoenix-selection-active="true"]::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent; /* NO overlay background - was covering content! */
+  z-index: -1; /* Behind content, not covering it */
+  pointer-events: none;
+}
+
+/* Selection instructions overlay */
+.phoenix-selection-instructions {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 999999;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  animation: phoenix-fade-in 0.5s ease-out;
+  
+}
+
+.phoenix-selection-instructions::before {
+  content: "🎯";
+  margin-right: 8px;
+}
+
+/* ===== ELEMENT TYPE INDICATORS ===== */
+
+/* Component vs Element visual distinction - ONLY when actively selecting */
+body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) [data-phoenix-id][data-phoenix-type="component"]:hover {
+  outline-style: dashed !important;
+}
+
+body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) [data-phoenix-id][data-phoenix-type="element"]:hover {
+  outline-style: solid !important;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .phoenix-hud {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    font-size: 11px;
+    padding: 10px;
+  }
+  
+  .phoenix-selection-instructions {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    transform: none;
+    text-align: center;
+    font-size: 13px;
+  }
+  
+  /* Reduce outline thickness on mobile - ONLY when actively selecting */
+  body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) [data-phoenix-id]:hover {
+    outline-width: 1px !important;
+  }
+  
+  .phoenix-selected {
+    outline-width: 2px !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .phoenix-hud {
+    background: rgba(20, 20, 20, 0.95);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  .phoenix-selection-instructions {
+    background: rgba(20, 20, 20, 0.95);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) [data-phoenix-id]:hover {
+    outline-width: 3px !important;
+  }
+  
+  .phoenix-selected {
+    outline-width: 4px !important;
+  }
+  
+  .phoenix-hud {
+    border-width: 2px;
+    background: black;
+  }
+}
+
+/* Reduced motion support - only affect Phoenix elements */
+@media (prefers-reduced-motion: reduce) {
+  [data-phoenix-id] {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .phoenix-selected {
+    animation: none !important;
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+/* Force tracking visibility (for testing) */
+.phoenix-force-visible [data-phoenix-id] {
+  outline: 1px dashed rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Hide tracking completely */
+.phoenix-hidden [data-phoenix-id] {
+  outline: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.phoenix-hidden [data-phoenix-id]:hover {
+  outline: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* ===== DEBUG STYLES ===== */
+
+/* Debug mode: show all Phoenix IDs */
+body[data-phoenix-debug="true"] [data-phoenix-id]::before {
+  content: attr(data-phoenix-id);
+  position: absolute;
+  top: -18px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-family: monospace;
+  white-space: nowrap;
+  z-index: 10002;
+  pointer-events: none;
+  border-radius: 2px;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Debug mode: element type badges */
+body[data-phoenix-debug="true"] [data-phoenix-id][data-phoenix-type="component"]::after {
+  content: "C";
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #8b5cf6;
+  color: white;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: bold;
+  z-index: 10002;
+  pointer-events: none;
+}
+
+body[data-phoenix-debug="true"] [data-phoenix-id][data-phoenix-type="element"]::after {
+  content: "E";
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #f59e0b;
+  color: white;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: bold;
+  z-index: 10002;
+  pointer-events: none;
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+  [data-phoenix-id] {
+    outline: none !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
+  
+  .phoenix-hud,
+  .phoenix-selection-instructions {
+    display: none !important;
+  }
+}
+
+/* ===== ACCESSIBILITY STYLES ===== */
+
+/* Focus indicators for keyboard navigation */
+[data-phoenix-id]:focus-visible {
+  outline: 2px solid #10b981 !important;
+  outline-offset: 2px !important;
+  background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+/* Screen reader support */
+.phoenix-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== COMPATIBILITY OVERRIDES ===== */
+
+/* Ensure tracking styles don't interfere with existing layouts */
+[data-phoenix-id] {
+  box-sizing: border-box;
+}
+
+/* Tailwind CSS compatibility */
+.phoenix-hud {
+  all: revert;
+  position: fixed !important;
+  top: 10px !important;
+  right: 10px !important;
+  z-index: 999999 !important;
+}
+
+/* Styled Components compatibility */
+[data-phoenix-id] {
+  outline-offset: 2px !important;
+}
+
+/* Material-UI compatibility - ONLY when actively selecting */
+body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) .MuiBox-root[data-phoenix-id]:hover,
+body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) .MuiPaper-root[data-phoenix-id]:hover {
+  outline: 2px solid #3b82f6 !important;
+}
+
+/* Bootstrap compatibility - ONLY when actively selecting */
+body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) .container[data-phoenix-id]:hover,
+body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) .row[data-phoenix-id]:hover,
+body[data-phoenix-selection-active="true"]:not([data-phoenix-disabled]) .col[data-phoenix-id]:hover {
+  outline: 2px solid #3b82f6 !important;
+}
